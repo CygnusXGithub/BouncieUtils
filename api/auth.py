@@ -42,9 +42,9 @@ def get_authorization_code(redirect_uri):
 
     # Start a temporary server to capture the redirect
     server_address = ('', 8080)
-    httpd = HTTPServer(server_address, AuthHandler)
-    httpd.handle_request()  # Handle a single request, then exit
-
+    httpd = HTTPServer(('localhost', 8080), AuthHandler)
+    while not hasattr(httpd, 'authorization_code'):
+        httpd.handle_request()
     return httpd.authorization_code
 
 def get_access_token(authorization_code, redirect_uri):
