@@ -1,4 +1,10 @@
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
 # Configuration for Bouncie API
 BASE_URL = "https://api.bouncie.dev/v1/"
-CLIENT_ID = "bouncieutils"
-CLIENT_SECRET = "Y5cy22S05ddMQXSojhjIcaRbQAx13IM5T8E7CfkqDTTtPz4XBK"
+CLIENT_ID = os.environ.get("BOUNCIE_CLIENT_ID")
+CLIENT_SECRET = os.environ.get("BOUNCIE_CLIENT_SECRET")
+

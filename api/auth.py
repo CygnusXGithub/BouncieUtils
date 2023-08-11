@@ -49,7 +49,7 @@ def get_authorization_code(redirect_uri):
 
 def get_access_token(authorization_code, redirect_uri):
     """
-    Exchange the authorization code for an access token.
+    Exchange the authorization code for an access token and refresh token.
     """
     data = {
         "client_id": CLIENT_ID,
@@ -61,13 +61,55 @@ def get_access_token(authorization_code, redirect_uri):
 
     response = requests.post(TOKEN_URL, data=data)
     if response.status_code == 200:
+        json_response = response.json()
+        return json_response.get("access_token"), json_response.get("refresh_token")
+    else:
+        # Handle error
+        return None, None
+
+def refresh_access_token(refresh_token):
+    data = {
+        "client_id": CLIENT_ID,
+        "client_secret": CLIENT_SECRET,
+        "grant_type": "refresh_token",
+        "refresh_token": refresh_token
+    }
+
+    response = requests.post(TOKEN_URL, data=data)
+    if response.status_code == 200:
         return response.json().get("access_token")
     else:
         # Handle error
         return None
+import os
 
+def save_tokens(access_token, refresh_token):
+    with open(".env", "a") as file:
+        file.write(f"\nBOUNCIE_ACCESS_TOKEN={access_token}")
+        file.write(f"\nBOUNCIE_REFRESH_TOKEN={refresh_token}")
+    
+    # Update the environment variables in the current session
+    os.environ["BOUNCIE_ACCESS_TOKEN"] = access_token
+    os.environ["BOUNCIE_REFRESH_TOKEN"] = refresh_token
+
+
+def load_tokens():
+    access_token = os.environ.get("BOUNCIE_ACCESS_TOKEN")
+    refresh_token = os.environ.get("BOUNCIE_REFRESH_TOKEN")
+    return access_token, refresh_token
+        
 def authenticate():
-    redirect_uri = "http://localhost:8080/callback"
-    authorization_code = get_authorization_code(redirect_uri)
-    access_token = get_access_token(authorization_code, redirect_uri)
-    return access_token
+    access_token, refresh_token = load_tokens()
+
+    if not access_token:
+        redirect_uri = "http://localhost:8080/callback"
+        access_token, refresh_token = get_access_token(get_authorization_code(redirect_uri), redirect_uri)
+        save_tokens(access_token, refresh_token)
+    else:
+        # Optionally, you can add a check here to see if the access token is expired.
+        # If it is, use the refresh_token to get a new access token.
+        # access_token = refresh_access_token(refresh_token)
+        # save_tokens(access_token, refresh_token)
+
+        return access_token
+
