@@ -6,21 +6,17 @@
 bouncie_tools/
 │
 ├── api/
-│   ├── init.py
 │   ├── auth.py                # Handles authentication and token management
 │   ├── endpoints.py           # Defines API endpoints and related constants
 │   └── client.py              # Centralized API client to handle requests
 │
 ├── tools/
-│   ├── init.py
 │   └── vehicle_checker.py     # Tool to check vehicle activity
 │
 ├── utils/
-│   ├── init.py
 │   └── date_utils.py          # Helper functions for date calculations
 │
 ├── tests/
-│   ├── init.py
 │   ├── test_auth.py
 │   ├── test_client.py
 │   └── test_vehicle_checker.py
