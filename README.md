@@ -38,6 +38,11 @@ The `client.py` module contains methods designed to fetch details about vehicles
 - `search_vehicles(vin=None, imei=None, limit=None, skip=None)`: Search for vehicles based on specific criteria.
 - `search_trips(imei, gps_format, transaction_id=None, starts_after=None, ends_before=None)`: Search for trips based on specific criteria.
 
+#### Response:
+The methods within the `client.py` module serve as a wrapper around the Bouncie API, specifically the `REST Vehicles` and `REST Trips` endpoints. When you make a request using these methods, the parameters you provide and the JSON response you receive are consistent with the examples and structures detailed in the [Bouncie API documentation](https://docs.bouncie.dev/#api-REST_Vehicles).
+
+For a comprehensive understanding of the response fields and their descriptions, it's recommended to refer directly to the official Bouncie API documentation. This ensures that you're always working with the most accurate and up-to-date information available from Bouncie.
+
 ### Vehicle Activity Check (`vehicle_checker.py`)
 The `vehicle_checker.py` tool leverages the API client to retrieve information about vehicles and their trips. Its primary function is to identify vehicles that have remained stationary for the past week.
 
