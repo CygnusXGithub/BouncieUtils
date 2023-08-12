@@ -1,13 +1,9 @@
-from api.auth import authenticate
+from api.auth import get_access_token
 
-def test_authentication():
-    for account_number in [1, 2]:
-        print(f"Authenticating for Account {account_number}...")
-        token = authenticate(account_number)
-        if token:
-            print(f"Access Token for Account {account_number}: {token}")
-        else:
-            print(f"Authentication failed for Account {account_number}.")
+# Get access token for the first account
+access_token_1 = get_access_token(1)
+print(access_token_1)
 
-if __name__ == "__main__":
-    test_authentication()
+# Get access token for the second account
+access_token_2 = get_access_token(2)
+print(access_token_2)
