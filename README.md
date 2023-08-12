@@ -47,5 +47,3 @@ The `vehicle_checker.py` tool leverages the API client to retrieve information a
 - Authentication
 - API client methods
 - Vehicle activity checks
-
-Ensure that all tests are comprehensive and cover potential edge cases to maintain the integrity and reliability of the tools.
