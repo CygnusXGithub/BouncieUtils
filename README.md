@@ -32,7 +32,7 @@ bouncie_tools/
 
 ## Authentication
 
-The authentication process remains consistent. The `auth.py` module is responsible for managing the OAuth 2.0 flow.
+The `auth.py` module is responsible for managing the OAuth 2.0 flow.
 
 ## API Client
 
@@ -47,8 +47,6 @@ The `vehicle_checker.py` tool leverages the API client to retrieve information a
 `main.py` serves as the project's entry point. It employs the `vehicle_checker` tool to obtain the required output, which is then displayed on the console.
 
 ## Testing
-
-Testing is a crucial aspect of this project. The primary focus is on evaluating the core components, which include:
 
 - Authentication
 - API client methods
