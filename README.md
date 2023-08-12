@@ -6,21 +6,17 @@
 bouncie_tools/
 │
 ├── api/
-│   ├── init.py
 │   ├── auth.py                # Handles authentication and token management
 │   ├── endpoints.py           # Defines API endpoints and related constants
 │   └── client.py              # Centralized API client to handle requests
 │
 ├── tools/
-│   ├── init.py
 │   └── vehicle_checker.py     # Tool to check vehicle activity
 │
 ├── utils/
-│   ├── init.py
 │   └── date_utils.py          # Helper functions for date calculations
 │
 ├── tests/
-│   ├── init.py
 │   ├── test_auth.py
 │   ├── test_client.py
 │   └── test_vehicle_checker.py
@@ -32,7 +28,7 @@ bouncie_tools/
 
 ## Authentication
 
-The authentication process remains consistent. The `auth.py` module is responsible for managing the OAuth 2.0 flow.
+The `auth.py` module is responsible for managing the OAuth 2.0 flow.
 
 ## API Client
 
@@ -48,10 +44,6 @@ The `vehicle_checker.py` tool leverages the API client to retrieve information a
 
 ## Testing
 
-Testing is a crucial aspect of this project. The primary focus is on evaluating the core components, which include:
-
 - Authentication
 - API client methods
 - Vehicle activity checks
-
-Ensure that all tests are comprehensive and cover potential edge cases to maintain the integrity and reliability of the tools.
